@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Horizontal Scroll using C3</title>
+</head>
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+<script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css">
+<style type="text/css">
+	.c3-axis-x-label{
+		font-size: 15px;
+	}
+	.c3-axis-y-label{
+		font-size: 15px;
+	}
+	.c3-legend-item{
+		font-size: 15px;
+		margin-left: 50%; 
+	}
+	.c3-text{
+		fill: rgb(0,0,0) !important;
+		font-size: 12px;
+	}
+	.c3-tooltip th{
+		background-color: black;
+	}
+	.c3-tooltip td.value{
+		font-size: 15px;
+	}
+	.c3-tooltip td.name{
+		font-size: 15px;
+	}
+</style>
+<body>
+<button onclick="init()" style="margin-left: 80%; font-size: 15px;">Reset</button>
+<div id = "chart" style="height: 500px; margin-left: 10%; "></div>
+
+</body>
+<script type="text/javascript">
+
+init();
+
+function init(){
+
+
+var chart = c3.generate({
+    bindto: '#chart',
+    size: {
+    	width: 800
+    },
+    data: {
+      url: 'data.csv',
+      x : 'Player',
+      y : 'Count',
+      type: 'bar',
+      labels: true
+    },
+    color: {
+       pattern: ['#ff9900']
+    },
+    axis: {
+    	x: {
+    		type: 'categorized',
+    		label: {
+    			text: 'Player',
+    			position: 'outer-center'
+    		},
+    		extent: [0, 6],
+    	},
+    	y: {
+        	label: {
+          		text: 'Rating Count',
+          		position: 'outer-middle'
+        	}
+        },
+    },
+    subchart: {
+    	show: true,
+    	size: {
+    		height: 100
+    	}
+    },
+    zoom: {
+    	enabled: true,
+    	rescale: true
+    },
+    title: {
+    	text: 'Player Rating Bar Graph'
+    },
+    grid: {
+    	y: {
+    		show: true
+    	},
+    	x: {
+    		show: true
+    	}
+    },
+    legend: {
+    	position: 'bottom'
+    }
+});
+
+}
+
+</script>
+</html>
